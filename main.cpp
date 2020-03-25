@@ -1,4 +1,12 @@
-/* CPP program to to print all elements of 2D array*/ 
+/* CPP program to to print pattern 
+
+*
+* *
+* * *
+* * * *
+* * * * *
+
+*/ 
 
 #include <stdio.h>
 #include <iostream>
@@ -8,9 +16,9 @@ int main()
 {
 	for(int i=0;i<5;i++)
 	{
-		for(int j=0;j<5;j++)
+		for(int j=0;j<=i;j++)
 		{
-			cout<<"("<<i<<","<<j<<")";
+			cout<<"*";
 		}
 		cout<<endl;
 	}
