@@ -1,4 +1,4 @@
-/* CPP program to add two 2D array and print the result*/ 
+/* CPP program for pointers*/ 
 
 #include <stdio.h>
 #include <iostream>
@@ -6,29 +6,28 @@ using namespace std;
 
 int main()
 {
-	int A[2][3];
-
-	cout<<"Enter the elements of array of 2*3 dimension"<<endl;
-
-	for(auto& x:A)  // for each x in A(x is row here)
+	int i=0;
+	int *ptr=new int[5];
+	ptr[0]=1;
+	ptr[1]=2;
+	ptr[2]=3;
+	ptr[3]=4;
+	ptr[4]=5;
+    for(i=0;i<5;i++)
 	{
-		for(auto& y:x) // for each y in x(y is coloumn here)
-		{
-           cin>>y;
-		}
+	 cout<<ptr[i]<<endl;	
+	}
 	
-		
-	}
-	cout<<endl<<"You Entered"<<endl;
-	for(auto& x:A)  // for each x in A(x is row here)
+	delete []ptr;
+	//Again allocate memory for 10 elements
+	cout<<"New memory allocated"<<endl;
+	ptr=new int[10];
+	for(i=0;i<10;i++)
 	{
-		for(auto& y:x) // for each y in x(y is coloumn here)
-		{
-           cout<<y<<" ";
-		}
-		cout<<endl;
-		
+	 cout<<ptr[i]<<endl;	
 	}
+	
+	
 
     return 0;
 }
