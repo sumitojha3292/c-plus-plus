@@ -1,4 +1,4 @@
-/* CPP  using built in more string class API */ 
+/* CPP to traverse,reverse,changing upper-lower and lower to upper case using a string iterator */ 
 
 #include <stdio.h>
 #include <iostream>
@@ -9,26 +9,23 @@ using namespace std;
 
 int main()
 {
- string str1;
- cout<<"Enter the string"<<endl; 
- getline(cin,str1);  // enter sumit
- cout<<"String is "<<endl<<str1<<endl;
- 
- // Append
- str1.append(" Ojha"); // add content to str1
- cout<<"After append string is "<<endl<<str1<<endl;
- // Insert
- str1.insert(0,"Hello "); // insert content from mentioned index
- cout<<"After insert string is "<<endl<<str1<<endl;
- 
- // Replace
- str1.replace(6,5,"NEHA"); // replace the 5 character from 6th index 
- cout<<"After Replace string is"<<endl<<str1<<endl;
- 
- // swap
- string str2="Hello User";
- str1.swap(str2);
- cout<<"First string is"<<endl<<str1<<endl;
- cout<<"Second string is"<<endl<<str2<<endl;
+  string s1="welcome";
+  string s2="HELLO";
+  string::iterator it;
+  string::reverse_iterator rit;
+  // traversing through string and changing it to upper case
+  for(it=s1.begin();it!=s1.end();it++)
+  {
+	  *it=*it-32;
+  }
+  cout<<s1<<endl;
+
+  
+  // Reversing a string and changing it to lower case
+ for(rit=s2.rbegin();rit!=s2.rend();rit++)
+  {
+	  *rit=*rit+32;
+  }
+   cout<<s2<<endl;
   return 0;
 }
