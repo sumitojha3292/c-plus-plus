@@ -1,4 +1,4 @@
-/* CPP for taking string input from user using built in string class API */ 
+/* CPP  using built in more string class API */ 
 
 #include <stdio.h>
 #include <iostream>
@@ -11,23 +11,24 @@ int main()
 {
  string str1;
  cout<<"Enter the string"<<endl; 
- getline(cin,str1);
- cout<<str1<<endl;
- cout<<"Length= "<<str1.length()<<endl;  // for calculating string length
- cout<<"Capacity= "<<str1.capacity()<<endl; // for calculating string length
- str1.resize(50);                          // it will make sure that new size will be >=50
- cout<<"New capacity= "<<str1.capacity()<<endl; 
- cout<<"string maxm size= "<<str1.max_size()<<endl; // for checking maxm string supported size
-// str1.clear(); // Clear the contents of string
- if(str1.empty())
- {
-	 cout<<"Empty string"<<endl;
-	
- }
- else
- {
-	  cout<<"string is "<<str1<<endl;
- }
+ getline(cin,str1);  // enter sumit
+ cout<<"String is "<<endl<<str1<<endl;
  
+ // Append
+ str1.append(" Ojha"); // add content to str1
+ cout<<"After append string is "<<endl<<str1<<endl;
+ // Insert
+ str1.insert(0,"Hello "); // insert content from mentioned index
+ cout<<"After insert string is "<<endl<<str1<<endl;
+ 
+ // Replace
+ str1.replace(6,5,"NEHA"); // replace the 5 character from 6th index 
+ cout<<"After Replace string is"<<endl<<str1<<endl;
+ 
+ // swap
+ string str2="Hello User";
+ str1.swap(str2);
+ cout<<"First string is"<<endl<<str1<<endl;
+ cout<<"Second string is"<<endl<<str2<<endl;
   return 0;
 }
