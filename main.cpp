@@ -1,38 +1,27 @@
-/* CPP for function overloading
- A function with same name can be redifened but its argument sould be different.
- If a function with same name and argument list but different return type is not 
- a function overloading.
+/* CPP for function Template
+ A function with same name and same body but different agrgument list can
+ be used as function template.
 */ 
 
 #include <stdio.h>
 #include <iostream>
-#include <string>
+
 using namespace std;
+template<class T>
 
-int add(int a,int b)
-{
-	return(a+b);
-}
 
-int add(int a, int b, int c)
+T maxim(T x, T y)
 {
-	return(a+b+c);
-}
-
-float add(float a, float b)
-{
-	return(a+b);
+	return x>y?x:y;
 }
 
 int main()
 {
-  int sum=0;	
-  sum=add(10,20);
-  cout<<"sum_1= "<<sum<<endl;
-  sum=add(10,20,30);  
-  cout<<"sum_2= "<<sum<<endl;
-  sum=add(10.5f,20.5f);
-  cout<<"sum_3= "<<sum<<endl;
+  cout<<"Maximum of two integers value:- "<<maxim(10,20)<<endl;
+  cout<<"Maximum of two float value:- "<<maxim(10.5f,5.5f)<<endl;
+  cout<<"Maximum of two double value:- "<<maxim(7.5,7.2)<<endl;
+  //cout<<"Maximum of one float and one double value:- "<<maxim(2.3f,5.5)<<endl;  // if you uncomment this, it will give an error 
+                                                                                  //because no function is defined with float and double argument list
 	
   return 0;
 }
