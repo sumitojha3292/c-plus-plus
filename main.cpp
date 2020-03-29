@@ -1,27 +1,22 @@
-/* CPP for function Template
- A function with same name and same body but different agrgument list can
- be used as function template.
-*/ 
+/* CPP for default function argument */ 
 
 #include <stdio.h>
 #include <iostream>
 
 using namespace std;
-template<class T>
 
-
-T maxim(T x, T y)
+int maxim(int a=0, int b=0, int c=0)
 {
-	return x>y?x:y;
+	return a>b && a>c ? a:(b>c && b>a ?b: c);
 }
+
 
 int main()
 {
-  cout<<"Maximum of two integers value:- "<<maxim(10,20)<<endl;
-  cout<<"Maximum of two float value:- "<<maxim(10.5f,5.5f)<<endl;
-  cout<<"Maximum of two double value:- "<<maxim(7.5,7.2)<<endl;
-  //cout<<"Maximum of one float and one double value:- "<<maxim(2.3f,5.5)<<endl;  // if you uncomment this, it will give an error 
-                                                                                  //because no function is defined with float and double argument list
+	cout<<"maximum_1= "<<maxim()<<endl;
+	cout<<"maximum_2= "<<maxim(3,6,1)<<endl;
+	cout<<"maximum_3= "<<maxim(4,9)<<endl;
+	cout<<"maximum_4= "<<maxim(0,0,3)<<endl;
 	
   return 0;
 }
