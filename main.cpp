@@ -1,39 +1,26 @@
-/* CPP for Return the address and reference*/ 
+/* CPP for using Inline function inside Recursion and stack overflow*/ 
 
 #include <stdio.h>
 #include <iostream>
 
 using namespace std;
 
-// Return by address
-
-int * func(int size)
+void func(int &a)  // this will act like a inline function
 {
-	int *p= new int[size];
-	cout<<"Adress of p= "<<p<<endl;
-	for(int i=0;i<size;i++)
+	long x=5;
+	float y=15.5;
+	double z=25;
+	if(a)
 	{
-		p[i]=i+1;
-		cout<<p[i]<<endl;
+		cout<<a<<" "<<endl;
+		func(++a);
 	}
-	return p;
-}
-
-// return by reference
-
-int & fun(int &a)
-{
-	return a; // variable a is the reference of x so it is returning the reference of a which is x itself 
 }
 
 int main()
 {
-  int x;
-  int *q;
-  fun(x)=5;
-  q=func(x);
-  cout<<"Adress of q= "<<q<<endl; 
-
+ int a=1;
+ func(a);
 
   return 0;
   
