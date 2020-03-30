@@ -1,37 +1,39 @@
-/* CPP for call by reference(Inline function) 
-1)In this method machine code of called function is copied in the place of function calling.
-2)In this method do not use complex function, loops inside function or very short(3-4) lines of code.
-3)If function is called by reference it will automatically act as a inline function.
-must watch video of abdul bari for this concept
-*/ 
+/* CPP for Return the address and reference*/ 
 
 #include <stdio.h>
 #include <iostream>
 
 using namespace std;
 
-void swap(int &a,int &b)
+// Return by address
+
+int * func(int size)
 {
-	int temp;
-	temp=a;
-	a=b;
-	b=temp;
-	cout<<"Inside swap function, Adress of:- "<<endl<<"a= "<<&a<<endl<<"b= "<<&b<<endl;
+	int *p= new int[size];
+	cout<<"Adress of p= "<<p<<endl;
+	for(int i=0;i<size;i++)
+	{
+		p[i]=i+1;
+		cout<<p[i]<<endl;
+	}
+	return p;
 }
 
-int sum(int &a, int &b)
+// return by reference
+
+int & fun(int &a)
 {
-	cout<<"Inside sum function, Adress of:- "<<endl<<"a= "<<&a<<endl<<"b= "<<&b<<endl;
-	return a+b;
+	return a; // variable a is the reference of x so it is returning the reference of a which is x itself 
 }
 
 int main()
 {
-	int a=10,b=20;
-	cout<<endl<<"Inside main function, Adress of:- "<<endl<<"a= "<<&a<<endl<<"b= "<<&b<<endl;
-	swap(a,b);
-	cout<<endl<<"After swapping"<<endl<<"a= "<<a<<" ,b= "<<b<<endl;
-	cout<<"SUM= "<<sum(a,b)<<endl;
+  int x;
+  int *q;
+  fun(x)=5;
+  q=func(x);
+  cout<<"Adress of q= "<<q<<endl; 
+
 
   return 0;
   
