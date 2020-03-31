@@ -1,4 +1,4 @@
-/* CPP for defining class*/ 
+/* CPP for class using pointer and allocate memory from heap*/ 
 
 #include <stdio.h>
 #include <iostream>
@@ -24,10 +24,10 @@ class rectangle
 
 int main()
 {
-	rectangle R1,R2;
-	R1.length=10;
-	R1.breadth=20;
-	cout<<"Area= "<<R1.area()<<endl<<"Perimeter= "<<R1.perimeter()<<endl;
+	rectangle *R1= new rectangle;  // Memory is allocated from heap
+	R1->length=10;
+	R1->breadth=20;
+	cout<<"Area= "<<R1->area()<<endl<<"Perimeter= "<<R1->perimeter()<<endl;
 
   return 0;
   
