@@ -1,26 +1,33 @@
-/* CPP for using Inline function inside Recursion and stack overflow*/ 
+/* CPP for defining class*/ 
 
 #include <stdio.h>
 #include <iostream>
 
 using namespace std;
 
-void func(int &a)  // this will act like a inline function
+class rectangle
 {
-	long x=5;
-	float y=15.5;
-	double z=25;
-	if(a)
+	public:
+	int length;
+	int breadth;
+	
+	int area()
 	{
-		cout<<a<<" "<<endl;
-		func(++a);
+		return (length*breadth);
 	}
-}
+	
+	int perimeter()
+	{
+		return (2*(length+breadth));
+	}
+};
 
 int main()
 {
- int a=1;
- func(a);
+	rectangle R1,R2;
+	R1.length=10;
+	R1.breadth=20;
+	cout<<"Area= "<<R1.area()<<endl<<"Perimeter= "<<R1.perimeter()<<endl;
 
   return 0;
   
