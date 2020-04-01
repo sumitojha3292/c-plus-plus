@@ -1,4 +1,4 @@
-/* CPP for using all methods in a class
+/* CPP for using this pointer in a class(data can be accessed by this pointer)
 Note:- There sould be atleast six methods for defining a good class. They are mainly
 1- Constructor.
 2- Mutators.
@@ -97,27 +97,27 @@ rectangle::rectangle(rectangle &r)
 	breadth=r.breadth;
 }
 
-void rectangle::set_data(int l,int b)
+void rectangle::set_data(int length,int breadth)
 {
-	if(l>=0)
-		length=l;
+	if(length>=0)
+		this->length=length;
 	else
-		length=0;
+		this->length=0;
 	
-	if(b>=0)
-		breadth=b;
+	if(breadth>=0)
+		this->breadth=breadth;
 	else
-		breadth=0;
+		this->breadth=0;
 }
 
 int rectangle::get_length(void)
 {
-	return length;
+	return this->length;
 }
 
 int rectangle::get_breadth(void)
 {
-	return breadth;
+	return this->breadth;
 }
 
 int rectangle::area()
