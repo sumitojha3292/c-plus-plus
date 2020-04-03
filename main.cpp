@@ -1,5 +1,6 @@
-/* CPP for defining Operator overloading. 
-  we can use several operator like (+,-,*,(),++,--,new,delete).
+/* CPP for defining  Friend Operator overloading. 
+  In this method function body is defined outside of class but by using friend 
+  operator scope resolution is not required.
  */ 
 
 #include <stdio.h>
@@ -9,33 +10,27 @@ using namespace std;
 
 struct Complex
 {
- public:
+
  int real;
  int img;
-
- Complex operator+(Complex C)
+ public:
+ // parameterized constructor
+ Complex(int r=0,int i=0)
  {
-	 Complex temp;
-	 temp.real=real+C.real;
-	 temp.img=img+C.img;
-	 return temp;
- } 
- 
- Complex operator-(Complex C)
- {
-	 Complex temp;
-	 temp.real=abs(real-C.real);
-	 temp.img=abs(img-C.img);
-	 return temp;
+	 real=r;
+	 img=i;
  }
+
+ //facilitator 
+ friend Complex operator+(Complex C1,Complex C2);
+ friend Complex operator-(Complex C1,Complex C2);
+
 
 };
 
 int main()
 {
- Complex C1,C2,C3,C4;
- C1.real=10;C1.img=5;
- C2.real=4;C2.img=8; 
+ Complex C1(12,5),C2(7,10),C3,C4;
  C3=C1+C2;
  C4=C1-C2;
  cout<<"C3= "<<C3.real<<" +i"<<C3.img<<endl;
@@ -44,6 +39,22 @@ int main()
   return 0;
   
 }
+
+ Complex operator+(Complex C1,Complex C2)
+ {
+	 Complex temp;
+	 temp.real=C1.real+C2.real;
+	 temp.img=C1.img+C2.img;
+	 return temp;
+ } 
+ 
+ Complex operator-(Complex C1,Complex C2)
+ {
+	 Complex temp;
+	 temp.real=abs(C1.real-C2.real);
+	 temp.img=abs(C1.img-C2.img);
+	 return temp;
+ }
 
 
 
