@@ -1,6 +1,6 @@
-/* CPP for defining  Friend Operator overloading. 
-  In this method function body is defined outside of class but by using friend 
-  operator scope resolution is not required.
+/* CPP for defining  Friend Operator overloading using insertion operator(<<). 
+In this method Complex number is displayed using insertion operator.
+must watch a video of abdul bari's insertion operator overloading.
  */ 
 
 #include <stdio.h>
@@ -24,6 +24,7 @@ struct Complex
  //facilitator 
  friend Complex operator+(Complex C1,Complex C2);
  friend Complex operator-(Complex C1,Complex C2);
+ friend ostream & operator<<(ostream &out, Complex &C);
 
 
 };
@@ -33,8 +34,8 @@ int main()
  Complex C1(12,5),C2(7,10),C3,C4;
  C3=C1+C2;
  C4=C1-C2;
- cout<<"C3= "<<C3.real<<" +i"<<C3.img<<endl;
- cout<<"C4= "<<C4.real<<" +i"<<C4.img<<endl;
+ cout<<C3;
+ cout<<C4;
 	
   return 0;
   
@@ -56,5 +57,12 @@ int main()
 	 return temp;
  }
 
+
+ostream & operator<<(ostream &out, Complex &C)
+{
+	cout<<C.real<<"+i"<<C.img<<endl;
+	
+	return out;
+}
 
 
