@@ -1,18 +1,6 @@
-/* CPP for using all methods in a class
-Note:- There sould be atleast six methods for defining a good class. They are mainly
-1- Constructor.
-2- Mutators.
-3- Acessors.
-4- Facilitators.
-5- Enquiry.
-6- Distructor.
-
-we can define function outside aswell as inside of class.
-we can define the body of function outside class using scope resolution. the main difference b/w 
-these two type of methods is that if defining function body inside class then it will act as a inline function
-and no seperate piece of machine code is generated. so we should use very simple, not complex logic function inside class.
-but if we define function outside class then there will be seperate piece of machine code will be generated so for complex logic 
-function we should use this kind of method.
+/* CPP for using Inheritance mechanism from existing rectangle class.
+In this program we will derive new class called cuboid(having height as new data member) using existing class rectangle.
+cuboid is displayed using insertion operator(<<) by friend operator overloading method.   
  */ 
 
 #include <stdio.h>
@@ -51,25 +39,28 @@ class rectangle
 
 };
 
+/*********Inheritate class**********************/
+class cuboid: public rectangle
+{
+	private:
+	int height;
+	public:
+	cuboid(int l,int b,int h);
+	int set_height(int h);
+	int get_height(void);
+	int volume();
+	friend ostream & operator<<(ostream &out, cuboid &C);
+	
+	
+	
+};
+
 int main()
 {
-	rectangle R1(10,5); // parameterized constructor
-	rectangle R2(10,10);   // copy constructor
-	rectangle R3(R1);       // Non Parameterized constructor
-	cout<<"Area of R1= "<<R1.area()<<endl<<"Perimeter of R1= "<<R1.perimeter()<<endl;
-	cout<<"Area of R2= "<<R2.area()<<endl<<"Perimeter of R2= "<<R2.perimeter()<<endl;
-	cout<<"Area of R3= "<<R3.area()<<endl<<"Perimeter of R3= "<<R3.perimeter()<<endl;
-	cout<<"Is R2 Square= ";
-	if(R2.is_square())
-	{
-		cout<<"True";
-	}
-	else
-	{
-		cout<<"False";
-	}
-	cout<<endl;
-	
+cuboid C1(5,10,15);
+cout<<C1;
+
+//cout<<"Volume= "<<C1.volume()<<" unit cube"<<endl;	
 
 
   return 0;
@@ -139,5 +130,37 @@ bool rectangle::is_square()
 rectangle:: ~rectangle()
 {
 	cout<<"Rectangle distroyed"<<endl;
+}
+
+
+/*****Cuboid class*********************/
+cuboid::cuboid(int l=0,int b=0,int h=0)
+{
+	set_height(h);
+	set_data(l,b);
+}
+
+int cuboid::get_height(void)
+{
+ return height;	
+}
+
+int cuboid::set_height(int h)
+{
+	if(h>=0)
+		height=h;
+	else
+		height=0;
+}
+
+int cuboid::volume(void)
+{
+	return (get_height()*get_breadth()*get_length());
+}
+
+ostream & operator<<(ostream &out, cuboid &C)
+{
+	out<<"length= "<<C.get_length()<<endl<<"breadth= "<<C.get_breadth()<<endl<<"Height= "<<C.height<<endl<<"Volume= "<<C.volume()<<endl;
+	return out;
 }
 
