@@ -1,6 +1,6 @@
-/* CPP for using Inheritance mechanism from existing rectangle class.
-In this program we will derive new class called cuboid(having height as new data member) using existing class rectangle.
-cuboid is displayed using insertion operator(<<) by friend operator overloading method.   
+/* CPP for using constructor in parent and child class.
+every time default constructor in parent class is executed first whenever any constructor is called in child class.
+but you can direct which class should be executed first in the following methods. 
  */ 
 
 #include <stdio.h>
@@ -8,159 +8,67 @@ cuboid is displayed using insertion operator(<<) by friend operator overloading 
 
 using namespace std;
 
-class rectangle
-{
-    private:
-	int length;
-	int breadth;
-	public:
-	/******* Constructors****************/
-     rectangle();
-	 rectangle(int l,int b);                  
-	 rectangle(rectangle &r);
-
-  
-    /*******Mutators********************/
-	void set_data(int l,int b);
-
-	/*******Acessors*******************/
-	int get_length(void);
-	int get_breadth(void);
-
-	/**********Facilitators************/
-	int area();
-	int perimeter();
-	
-	/********Enquiry****************/
-	bool is_square();
-	
-	/********Distructor****************/
-	~rectangle();
-
-};
-
-/*********Inheritate class**********************/
-class cuboid: public rectangle
+class parent
 {
 	private:
-	int height;
+	int p;
 	public:
-	cuboid(int l,int b,int h);
-	int set_height(int h);
-	int get_height(void);
-	int volume();
-	friend ostream & operator<<(ostream &out, cuboid &C);
+	/***Default constructor******/
+	parent()
+	{
+		cout<<"Default parent class"<<endl;
+	}
 	
+	/***Parameterized constructor******/
+	
+	parent(int p)
+	{
+		cout<<"Param parent class "<<p<<endl;
+	}
 	
 	
 };
+
+
+class child: public parent
+{
+	private:
+	int c;
+	public:
+	/***Default constructor******/
+	child()
+	{
+		cout<<"Default child class"<<endl;
+	}
+	
+	/***Parameterized constructor******/
+	
+	child(int c)
+	{
+		cout<<"Param child class "<<c<<endl;
+	}
+	
+	child(int p,int c):parent(p) // method to execute parameterized parent class
+	{
+		cout<<"Parameterized child class "<<c<<endl;
+	}
+	
+	
+};
+
+
 
 int main()
 {
-cuboid C1(5,10,15);
-cout<<C1;
-
-//cout<<"Volume= "<<C1.volume()<<" unit cube"<<endl;	
-
-
+  cout<<"Object-C1:"<<endl;	
+  child C1;  // default parent class constructor is executed first then default child class will be executed.
+  cout<<"Object-C2:"<<endl;
+  child C2(10); // default parent class constructor is executed first then child parameterized class will be executed.
+  cout<<"Object-C3:"<<endl;
+  child C3(10,20); // parameterized parent class constructor is executed first then child parameterized class will be executed.
   return 0;
   
 }
 
 
-
-
-
- rectangle::rectangle()
- {
-	 length=0;
-	 breadth=0;
- }
- 
-rectangle::rectangle(int l,int b)
-{
-	set_data(l,b);
-}
-
-rectangle::rectangle(rectangle &r)
-{
-	length=r.length;
-	breadth=r.breadth;
-}
-
-void rectangle::set_data(int l,int b)
-{
-	if(l>=0)
-		length=l;
-	else
-		length=0;
-	
-	if(b>=0)
-		breadth=b;
-	else
-		breadth=0;
-}
-
-int rectangle::get_length(void)
-{
-	return length;
-}
-
-int rectangle::get_breadth(void)
-{
-	return breadth;
-}
-
-int rectangle::area()
-{
-	return (length*breadth);
-}
-
-int rectangle::perimeter()
-{
-	return (2*(length+breadth));
-}
-
-
-bool rectangle::is_square()
-{
-	return length==breadth?true:false;
-}
-
-rectangle:: ~rectangle()
-{
-	cout<<"Rectangle distroyed"<<endl;
-}
-
-
-/*****Cuboid class*********************/
-cuboid::cuboid(int l=0,int b=0,int h=0)
-{
-	set_height(h);
-	set_data(l,b);
-}
-
-int cuboid::get_height(void)
-{
- return height;	
-}
-
-int cuboid::set_height(int h)
-{
-	if(h>=0)
-		height=h;
-	else
-		height=0;
-}
-
-int cuboid::volume(void)
-{
-	return (get_height()*get_breadth()*get_length());
-}
-
-ostream & operator<<(ostream &out, cuboid &C)
-{
-	out<<"length= "<<C.get_length()<<endl<<"breadth= "<<C.get_breadth()<<endl<<"Height= "<<C.height<<endl<<"Volume= "<<C.volume()<<endl;
-	return out;
-}
 
