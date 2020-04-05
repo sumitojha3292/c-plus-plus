@@ -1,6 +1,7 @@
-/*CPP for parent class pointer and child object.
+/*CPP for checking if child class pointer can be addressed to parent class object.
 child class is always inherited from parent class so (parent-->child)
-pointer of parent class can be addressed to object of child class.
+parent class can always hold the address of next child class and child class can
+hold the address of next grand child class but this is not applicable to backward direction. 
 */ 
 
 #include <stdio.h>
@@ -29,12 +30,10 @@ class child:public parent
 
 int main()
 {
-	child C;
-	C.func_child();
-	C.func_parent();
-	parent *p=&C;
-	p->func_parent();  
-   // p->func_child();   //	This will give error that parent class has no member as func_child().
-
+	parent p;
+	child *C=&p;  //	This will give error because child class is derived from parent class so it can't hold the address of parent class.
+	C->func_child();
+	C->func_parent();
+    
     return 0;
 }
