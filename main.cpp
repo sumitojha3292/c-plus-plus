@@ -1,6 +1,12 @@
-/* CPP for using constructor in parent and child class.
-every time default constructor in parent class is executed first whenever any constructor is called in child class.
-but you can direct which class should be executed first in the following methods. 
+/* CPP for using ways of inheritance between parent, child and Grand child classes.
+There are three ways of inheritance.
+1)private.
+2)protected.
+3)public.
+In this method there will following commits related to this mechanism.
+must watch video of abdul bari's "ways of inheritance". 
+
+ 
  */ 
 
 #include <stdio.h>
@@ -11,61 +17,70 @@ using namespace std;
 class parent
 {
 	private:
-	int p;
+	int a;
+	protected:
+	int b;
 	public:
-	/***Default constructor******/
-	parent()
+	int c;
+	
+	void func_parent()
 	{
-		cout<<"Default parent class"<<endl;
+		a=5;
+		b=6;
+		c=7;
 	}
-	
-	/***Parameterized constructor******/
-	
-	parent(int p)
-	{
-		cout<<"Param parent class "<<p<<endl;
-	}
-	
-	
+		
 };
 
+/*************Class is derived publically from parent class*********
+
+// Private inherited members stay inaccessible (so int a is inaccessible).
+// Protected inherited members stay protected (so int b is treated as protected).
+// Public inherited members stay public (so int c is treated as public).
+*/
 
 class child: public parent
 {
 	private:
-	int c;
+	
+	protected:
+	
 	public:
-	/***Default constructor******/
-	child()
+	/* if class is inheriting publically then all the members of parent class comes inside public **/
+	
+	void fun_child()
 	{
-		cout<<"Default child class"<<endl;
+		//a=10;  // a is not accessible
+		b=20;  // it will be protected
+		c=30;  // it will be public
 	}
-	
-	/***Parameterized constructor******/
-	
-	child(int c)
-	{
-		cout<<"Param child class "<<c<<endl;
-	}
-	
-	child(int p,int c):parent(p) // method to execute parameterized parent class
-	{
-		cout<<"Parameterized child class "<<c<<endl;
-	}
-	
 	
 };
 
 
+class Grand_child: public child
+{
+	private:
+	
+	protected:
+	
+	public:
+	/* if class is inheriting publically then all the members of child class comes inside public **/
+	void fun_grand_child()
+	{
+		//a=11;  // a is not accessible
+		b=12;  // it will be protected
+		c=13;  // it will be public
+	}
+	
+};
+
 
 int main()
 {
-  cout<<"Object-C1:"<<endl;	
-  child C1;  // default parent class constructor is executed first then default child class will be executed.
-  cout<<"Object-C2:"<<endl;
-  child C2(10); // default parent class constructor is executed first then child parameterized class will be executed.
-  cout<<"Object-C3:"<<endl;
-  child C3(10,20); // parameterized parent class constructor is executed first then child parameterized class will be executed.
+  Grand_child G1;
+  G1.fun_grand_child();
+  cout<<G1.c<<endl;
   return 0;
   
 }
