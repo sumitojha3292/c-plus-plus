@@ -32,27 +32,27 @@ class parent
 		
 };
 
-/*************Class is derived protected from parent class*********
+/*************If a Class is derived privately from parent class*********
 
 // Private inherited members stay inaccessible (so int a is inaccessible).
-// Protected inherited members stay protected (so int b is treated as protected).
-// Public inherited members become protected (so int c is treated as protected).
+// Protected inherited members become private (so int b is treated as private).
+// Public inherited members become private (so int c is treated as private).
 */
 
-class child: protected parent
+class child: private parent
 {
 	private:
-	
+	/* if class is inheriting private then all the members of parent class comes inside private*/
 	protected:
-	/* if class is inheriting protected then all the members of parent class comes inside protected **/
+	
 	public:
 	
 	
 	void fun_child()
 	{
 		//a=10;  // a is not accessible
-		b=20;  // it will be protected
-		c=30;  // it will be protected and can't be accessed more by objects.
+		b=20;  // it will be now private but accessible inside child class but inaccessible in further grand child class.
+		c=30;  // it will be now private but accessible inside child class but inaccessible in further grand child class.
 	}
 	
 };
@@ -69,8 +69,8 @@ class Grand_child: public child
 	void fun_grand_child()
 	{
 		//a=11;  // a is not accessible
-		b=12;  // it will be protected
-		c=13;  // it will be protected now because this member becomes protected in child class.
+		b=12;  // not accessible(become private in child class )
+		c=13;  // not accessible(become private in child class )
 	}
 	
 };
