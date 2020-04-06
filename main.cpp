@@ -1,7 +1,5 @@
-/*CPP for checking if child class pointer can be addressed to parent class object.
-child class is always inherited from parent class so (parent-->child)
-parent class can always hold the address of next child class and child class can
-hold the address of next grand child class but this is not applicable to backward direction. 
+/*CPP for function overriding method in polymorphism.
+In function overriding method same function signature is defined in parent and child class. 
 */ 
 
 #include <stdio.h>
@@ -12,28 +10,27 @@ using namespace std;
 class parent
 {
 	public:
-	void func_parent()
+	void display()
 	{
-		cout<<"parent class"<<endl;
+		cout<<"this is parent class"<<endl;
 	}
 };
 
 class child:public parent
 {
 	public:
-	void func_child()
+	void display()        // this is function overiding
 	{
-		cout<<"child class"<<endl;
+		cout<<"this is child class"<<endl;
 	}
 };
 
 
 int main()
 {
-	parent p;
-	child *C=&p;  //	This will give error because child class is derived from parent class so it can't hold the address of parent class.
-	C->func_child();
-	C->func_parent();
+	child c;
+	c.display();  // child class display function will be called
+	c.parent::display(); // parent class display function will be called 
     
     return 0;
 }
