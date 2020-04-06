@@ -1,8 +1,10 @@
-/*CPP for polymorphism using virtual function overiding.
-A virtual function is a special type of function that, when called, resolves 
-to the most-derived version of the function that exists between the base 
-and derived class. This capability is known as polymorphism.
-when same instruction is executing different results, it is known as polymorphism.
+/*CPP for Understanding concept of Abstract class.
+Class which has a pure virtual function is called Abstract class. In abstract class
+we can't create the object of abstract class but we can create the pointer of it to achieve
+polymorphism.
+Purpose of abstract class is to force the child class to have function overiding(polymorphism) of that pure 
+virtual function. if child class is not overiding then it will also become abstract class. for child class To become concrete
+class it should overide the function.
 
 */ 
 
@@ -14,45 +16,37 @@ using namespace std;
 class parent
 {
 	public:
-	virtual void display()
+	void func1()
 	{
-		cout<<"this is parent class"<<endl;
+		cout<<"Parent class func1"<<endl;
 	}
+	virtual void func2()=0;  //pure virtual function by removing the body and assigning it  to zero 
+
 };
 
-class child_1:public parent
+class child:public parent
 {
 	public:
-	void display()        // this is function overiding
+	void func2()
 	{
-		cout<<"this is child_1 class"<<endl;
+		cout<<"child class func2"<<endl;
 	}
+	
+
 };
 
 
-class child_2:public parent
-{
-	public:
-	void display()        // this is function overiding
-	{
-		cout<<"this is child_2 class"<<endl;
-	}
-};
-
-/* ptr->display() is used twice in main function but each time 
-giving different result is known as polymorphism */
 
 int main()
 {
-	child_1 c1;
-	child_2 c2;
-	parent *ptr=&c1;
-	c1.parent::display();
-	ptr->display(); 
-	ptr=&c2;
-	ptr->display();
-	c2.parent::display();
-
-    
+	//parent p;  // parent class is abstract so we can't create an object of it.
+	//p.func1();
+	child c;     // child class is concrete class 
+	c.func1();
+	c.func2();
+	parent *ptr=&c;  // as parent class is abstract so we can create pointer of it.
+	ptr->func1();
+	
+ 
     return 0;
 }
