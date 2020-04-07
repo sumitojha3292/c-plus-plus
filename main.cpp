@@ -1,4 +1,10 @@
-/*CPP for accessing private,protected and public data member on object by using friend function.*/ 
+/*CPP for static members and static functions of a class.
+1-static members are common for all the objects of a class.
+2- static members defined inside a class should also be declare outside using scope resolution.
+3-Static member functions can only access static members of a class, it can't access normal data members.
+  We can call the static functions using class name and object also.
+4-Static members can be used as counters and shared memory for all the objects.
+*/ 
 
 #include <stdio.h>
 #include <iostream>
@@ -6,59 +12,36 @@ using namespace std;
 
 class child;    // defining a class prototype
 
-
-class parent
+class test
 {
-	private:
+	public:
 	int a;
-	protected:
-	int b;	
-	public:
-	int c;
-	friend void func();    // declaring a friend function
-	friend class child;   // declaring a friend class
-	
-	
-
-};
-
-
-void func()
-{
-	parent p;        // we can only acess the private member upon object.we can't acess the private member directly.
-	p.a=1;
-	p.b=2;
-	p.c=3;
-	cout<<"In func:"<<endl;
-	cout<<"a= "<<p.a<<endl<<"b= "<<p.b<<endl<<"c= "<<p.c<<endl;
-	
-}
-
-class child
-{
-	public:
-	parent p1;
-	
-	void display()
+	int b;
+	static int cnt;
+	test()
 	{
-		p1.a=10;    // we can only acess the private member upon object.we can't acess the private member directly.
-		p1.b=20;
-		p1.c=30;
-		cout<<"In class child:"<<endl;
-		cout<<"a= "<<p1.a<<endl<<"b= "<<p1.b<<endl<<"c= "<<p1.c<<endl;
-		
-		
-		
+		int a=10;
+		cnt++;
+	}
+	
+	static int getcount()
+	{
+		//b=20;     // we can't use non static members inside static function.
+		return cnt;
 	}
 };
+
+int test::cnt=0; // again declared so that confirming that this static member always belong to this class using scope resolution.
 
 
 
 
 int main()
 { 
-    child c;
-	c.display();
-    func();
+    test t1,t2,t3;  // 3 objects created so count value should be 3
+	cout<<t1.cnt<<endl;  // static members accessed upon objects.
+	cout<<t2.getcount()<<endl;
+	cout<<test::cnt<<endl;  // static members directly accessed using scope resolution. 
+	cout<<test::getcount()<<endl; // static function directly accessed using scope resolution.
     return 0;
 }
