@@ -1,47 +1,68 @@
 /*CPP for static members and static functions of a class.
-1-static members are common for all the objects of a class.
-2- static members defined inside a class should also be declare outside using scope resolution.
-3-Static member functions can only access static members of a class, it can't access normal data members.
-  We can call the static functions using class name and object also.
-4-Static members can be used as counters and shared memory for all the objects.
+1- Object of the inner class should be created after defination of inner class.
+2- Inner class can only access the static members of the outer class. 
+3- Outer class can access all the public members of the inner class(it can't access private and protected members).
+4- we can also create the object of inner class outside outer class using scope resolution.
+5- if we don't want inner class to visible outside outer class then we can define inner class as private.
 */ 
 
 #include <stdio.h>
 #include <iostream>
 using namespace std;
 
-class child;    // defining a class prototype
 
-class test
+class outer
 {
-	public:
+	private:
+	
 	int a;
-	int b;
-	static int cnt;
-	test()
+	static int b;
+	
+	public:
+	//inner i;  // we can't create inner class object before defination of its class(Rule-1)
+	void func()
 	{
-		int a=10;
-		cnt++;
+		cout<<"a= "<<a<<endl<<"b= "<<b<<endl;
+		i.show();
 	}
 	
-	static int getcount()
+	class inner
 	{
-		//b=20;     // we can't use non static members inside static function.
-		return cnt;
-	}
+		private:
+		 int c=20;
+		
+		protected:
+		int d=30;
+		
+		public:
+
+		void show()
+		{
+			cout<<"This is inner class:"<<endl;
+			//cout<<"a= "<<a<<endl; // Rule-2
+			b=10;        // Rule-2
+		}
+	};
+	
+	inner i; // Rule-1
+	
+
 };
 
-int test::cnt=0; // again declared so that confirming that this static member always belong to this class using scope resolution.
+int outer::b=0;   // static variables should also be define globally.
+
+
 
 
 
 
 int main()
 { 
-    test t1,t2,t3;  // 3 objects created so count value should be 3
-	cout<<t1.cnt<<endl;  // static members accessed upon objects.
-	cout<<t2.getcount()<<endl;
-	cout<<test::cnt<<endl;  // static members directly accessed using scope resolution. 
-	cout<<test::getcount()<<endl; // static function directly accessed using scope resolution.
+   outer::inner t;    // Rule-4
+   t.show();         // Rule-3
+   outer o;
+   o.func();
+   //cout<<"c= "<<o.c<<endl<<"d= "<<o.d<<endl; // Rule-3
+
     return 0;
 }
