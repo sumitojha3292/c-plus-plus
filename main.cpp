@@ -1,4 +1,4 @@
-/*CPP for using STL Vector class. 
+/*CPP for using STL list class. 
 1-STL contains a collection of classes that provide templated classes like:-
   1.1-Algorithms- There are built in functions and algorithms for managing and performing operations on containers.
   1.2-Containers- Array,linked list,stack,queues etc has built in classes is called containers.
@@ -26,20 +26,20 @@
 
 #include <stdio.h>
 #include <iostream>
-#include <vector>
+#include <list>
 using namespace std;
 
 int main()
 {
-	vector<int> v={1,2,3,4,5};
+	list<int> v={2,4,6,8,10};
 	v.push_back(20);
-	v.push_back(21);
+	v.push_back(22);
 	cout<<"using iterator and for loop:"<<endl;
 	
-	vector<int>::iterator itr; // creating object of iterator class for vector class
+	list<int>::iterator itr; // creating object of iterator class for vector class
 	for(itr=v.begin();itr!=v.end();itr++)
 	{
-		cout<<*itr<<endl;
+		cout<<++*itr<<endl; // incremented 
 	}
 	
 	v.pop_back();
