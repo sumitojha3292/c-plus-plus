@@ -1,35 +1,59 @@
-/*CPP for using const qualifier in a class.*/ 
+/*CPP for using namespaces in class and function.
+1-Namespace is used to remove name conflicts in a recources like functions,classes and object.
+2- when we want functions,classes,object with the same name so we have to enclosed them into a namespace.*/ 
 
 #include <stdio.h>
 #include <iostream>
 using namespace std;
 
+namespace first
+{
 class demo
 {
 	public:
-	int x=10;
-	int y=20;
-	
-	void display()const  // defining a function as a constant
+    void display()
 	{
-		//x++; // it will give error 
-		//y++; // it will give error 
-		cout<<"display function"<<endl<<"value of x= "<<x<<endl<<"value of y= "<<y<<endl;
+		cout<<"first"<<endl;
 	}
-	
-   void increment()
+
+};
+};
+
+namespace second
+{
+class demo
+{
+	public:
+	void display()
 	{
-		x++;
-		y++;
-		cout<<"increment func"<<endl<<"value of x= "<<x<<endl<<"value of y= "<<y<<endl;
+		cout<<"second"<<endl;
+	}
+};
+};
+
+namespace func_1
+{
+	void show()
+	{
+		cout<<"func_1"<<endl;
 	}
 };
 
+namespace func_2
+{
+	void show()
+	{
+		cout<<"func_2"<<endl;
+	}
+}
+
+using namespace first;
+using namespace func_2;
 int main()
 { 
     demo d;
 	d.display();
-	d.increment();
+	show();
 
     return 0;
 }
