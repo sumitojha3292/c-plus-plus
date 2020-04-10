@@ -1,4 +1,4 @@
-/*CPP for using STL SET class. 
+/*CPP for using STL map class. 
 1-STL contains a collection of classes that provide templated classes like:-
   1.1-Algorithms- There are built in functions and algorithms for managing and performing operations on containers.
   1.2-Containers- Array,linked list,stack,queues etc has built in classes is called containers.
@@ -26,31 +26,29 @@
 
 #include <stdio.h>
 #include <iostream>
-#include <set>
+#include <map>
 using namespace std;
 
 int main()
 {
-	set<int> v={2,4,6,8,10,10};
-	v.insert(20);
-	v.insert(22);
+	map<int,string> m;
+	m.insert(pair<int,string>(1,"sumit"));
+	m.insert(pair<int,string>(2,"amit"));
+	m.insert(pair<int,string>(3,"rishi"));
+	m.insert(pair<int,string>(4,"papa"));
 	cout<<"using iterator and for loop:"<<endl;
 	
-	set<int>::iterator itr; // creating object of iterator class for vector class
-	for(itr=v.begin();itr!=v.end();itr++)
+	map<int,string>::iterator itr; // creating object of iterator class for vector class
+	for(itr=m.begin();itr!=m.end();itr++)
 	{
 		//cout<<++*itr<<endl; // we can not modify the values in the set. we can only display it. 
-		cout<<*itr<<endl;
+		cout<<itr->first<<" "<<itr->second<<endl;
 	}
 	
-	v.erase(20);
-	v.erase(22);
-	cout<<"Using for each loop:"<<endl;
-	
-	for(int x:v)
-	{
-		cout<<x<<endl;
-	}
+	map<int,string>::iterator itr1;
+	itr1=m.find(3);
+	cout<<"value found:"<<endl;
+	cout<<itr1->first<<" "<<itr1->second<<endl;
 	
    return 0;
 }
