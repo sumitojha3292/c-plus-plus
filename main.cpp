@@ -1,4 +1,4 @@
-/*CPP for using STL list class. 
+/*CPP for using STL SET class. 
 1-STL contains a collection of classes that provide templated classes like:-
   1.1-Algorithms- There are built in functions and algorithms for managing and performing operations on containers.
   1.2-Containers- Array,linked list,stack,queues etc has built in classes is called containers.
@@ -26,24 +26,25 @@
 
 #include <stdio.h>
 #include <iostream>
-#include <list>
+#include <set>
 using namespace std;
 
 int main()
 {
-	list<int> v={2,4,6,8,10};
-	v.push_back(20);
-	v.push_back(22);
+	set<int> v={2,4,6,8,10,10};
+	v.insert(20);
+	v.insert(22);
 	cout<<"using iterator and for loop:"<<endl;
 	
-	list<int>::iterator itr; // creating object of iterator class for vector class
+	set<int>::iterator itr; // creating object of iterator class for vector class
 	for(itr=v.begin();itr!=v.end();itr++)
 	{
-		cout<<++*itr<<endl; // incremented 
+		//cout<<++*itr<<endl; // we can not modify the values in the set. we can only display it. 
+		cout<<*itr<<endl;
 	}
 	
-	v.pop_back();
-	v.pop_back();
+	v.erase(20);
+	v.erase(22);
 	cout<<"Using for each loop:"<<endl;
 	
 	for(int x:v)
