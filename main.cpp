@@ -1,50 +1,26 @@
-/*CPP for using virtual Destructor in a parent and child class.
-1- Destructor is a function which is called automatically when an object is destroyed.
-2- When you create an object in a heap then only constructor is called. for calling a destructor 
-   object should be deleted using delete operator.
-3- Unlike constructor, destructor of child class is called first than parent class.so destructor
-   is called from bottom to top.   
-*/ 
+/*CPP for using IO streams and writing in a file.
+1-For writing in a file there is a class available called 'ofstream'.
+2-There are two modes for writing:-
+  2.1- Truncate mode- It is also a default mode in which content is deleted and fresh content is over written.
+       syntax- ofstream ofs("file name",ios::trunc)
+	           ofs<<"hello"<<endl; // for writing hello
+  2.2- Append mode- it is used for appending content in a file which has already some content.
+       syntax- ofstream ofs("file name",ios::app)  
+               ofs<<"hello"<<endl; // for writing hello
+
+*/             
 
 #include <stdio.h>
 #include <iostream>
+#include <fstream>  // Including for file input output stream
 using namespace std;
 
 
-class parent
-{
-	public:
-    parent()
-	{
-		cout<<"parent-constructor"<<endl;
-	}
-	
-	virtual ~parent()
-	{
-		cout<<"parent-destructor"<<endl;
-	}
-
-};
-
-class child: public parent
-{
-	public:
-    child()
-	{
-		cout<<"child-constructor"<<endl;
-	}
-	
-	~child()
-	{
-		cout<<"child-destructor"<<endl;
-	}
-
-};
-
 int main()
 {  
-   parent *ptr=new child();// constructor is called from top to bottom that is from parent class to child class.
-   delete ptr; // if virtual destructor is not used then only parent class destructor will be called bcz pointer\
-                 is of type parent class. for making child class destructor also to be called, virtual destructor is used. 
+    ofstream ofs("my_cpp.txt",ios::app);  // file is created
+	ofs<<"hello"<<endl;
+	ofs<<"sumit"<<endl;
+	ofs.close();         // file is closed
     return 0;
 }
