@@ -1,4 +1,4 @@
-/*CPP for using Destructor in a class.
+/*CPP for using virtual Destructor in a parent and child class.
 1- Destructor is a function which is called automatically when an object is destroyed.
 2- When you create an object in a heap then only constructor is called. for calling a destructor 
    object should be deleted using delete operator.
@@ -11,25 +11,40 @@
 using namespace std;
 
 
-class demo
+class parent
 {
 	public:
-    demo()
+    parent()
 	{
-		cout<<"constructor"<<endl;
+		cout<<"parent-constructor"<<endl;
 	}
 	
-	~demo()
+	virtual ~parent()
 	{
-		cout<<"destructor"<<endl;
+		cout<<"parent-destructor"<<endl;
+	}
+
+};
+
+class child: public parent
+{
+	public:
+    child()
+	{
+		cout<<"child-constructor"<<endl;
+	}
+	
+	~child()
+	{
+		cout<<"child-destructor"<<endl;
 	}
 
 };
 
 int main()
 {  
-   demo *ptr=new demo(); // constructor will be called
-   delete ptr; // if commented destructor will not be called and memory allocation in heap will remain.\
-                so destructor is used to release the resources allocated by the constructor.
+   parent *ptr=new child();// constructor is called from top to bottom that is from parent class to child class.
+   delete ptr; // if virtual destructor is not used then only parent class destructor will be called bcz pointer\
+                 is of type parent class. for making child class destructor also to be called, virtual destructor is used. 
     return 0;
 }
