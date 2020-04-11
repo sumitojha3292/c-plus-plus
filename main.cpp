@@ -1,59 +1,35 @@
-/*CPP for using namespaces in class and function.
-1-Namespace is used to remove name conflicts in a recources like functions,classes and object.
-2- when we want functions,classes,object with the same name so we have to enclosed them into a namespace.*/ 
+/*CPP for using Destructor in a class.
+1- Destructor is a function which is called automatically when an object is destroyed.
+2- When you create an object in a heap then only constructor is called. for calling a destructor 
+   object should be deleted using delete operator.
+3- Unlike constructor, destructor of child class is called first than parent class.so destructor
+   is called from bottom to top.   
+*/ 
 
 #include <stdio.h>
 #include <iostream>
 using namespace std;
 
-namespace first
-{
+
 class demo
 {
 	public:
-    void display()
+    demo()
 	{
-		cout<<"first"<<endl;
+		cout<<"constructor"<<endl;
+	}
+	
+	~demo()
+	{
+		cout<<"destructor"<<endl;
 	}
 
 };
-};
 
-namespace second
-{
-class demo
-{
-	public:
-	void display()
-	{
-		cout<<"second"<<endl;
-	}
-};
-};
-
-namespace func_1
-{
-	void show()
-	{
-		cout<<"func_1"<<endl;
-	}
-};
-
-namespace func_2
-{
-	void show()
-	{
-		cout<<"func_2"<<endl;
-	}
-}
-
-using namespace first;
-using namespace func_2;
 int main()
-{ 
-    demo d;
-	d.display();
-	show();
-
+{  
+   demo *ptr=new demo(); // constructor will be called
+   delete ptr; // if commented destructor will not be called and memory allocation in heap will remain.\
+                so destructor is used to release the resources allocated by the constructor.
     return 0;
 }
