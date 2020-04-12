@@ -1,42 +1,72 @@
-/*CPP for using file strem for writing and reading from a file.
-1-For reading in a file there is a class available called 'ofstream'.
-2-There are two flags available:-
-  2.1- For Reading-ios::in
-  2.2- For Writing-ios::out
-3- For reading a file you can also use fileobject.open("file name").
-4- for reading a file a same file must be existing.
-5- To check end of file use syntax object.eof()  
-
-*/             
+/*CPP for serialization using class and operator overloading.*/             
 
 #include <stdio.h>
 #include <iostream>
 #include <fstream>  // Including for file input output stream
 using namespace std;
 
+class student
+{
+	private:
+	string name;
+	int age;
+	string gender;
+	
+	public:
+	student()
+	{
+		
+	}
+	student(string s,int n, string m)
+	{
+		name=s;
+		age=n;
+		gender=m;
+	}
+	friend ofstream & operator<<(ofstream &ofs, student s); 
+	friend ifstream & operator>>(ifstream &ofs, student &s);
+    friend ostream & operator<<(ostream &os, student &s);
+		
+};
+
+ofstream & operator<<(ofstream &ofs,student s)
+{
+	ofs<<s.name<<endl;
+	ofs<<s.age<<endl;
+	ofs<<s.gender<<endl;
+	return ofs;
+}
+
+ifstream & operator>>(ifstream &ifs, student &s)
+{
+	ifs>>s.name;
+	ifs>>s.age;
+	ifs>>s.gender;
+	
+	return ifs;
+}
+
+ostream & operator<<(ostream &os, student &s)
+{
+	os<<"name= "<<s.name<<endl;
+	os<<"age= "<<s.age<<endl;
+	os<<"gender= "<<s.gender<<endl;
+	return os;
+}
+
 
 int main()
 {  
-    ofstream ofs("my_cpp.txt",ios::trunc);  // file is created and it will truncate the content
-	ofs<<"sumit"<<endl;
-	ofs<<"28"<<endl;
-	ofs<<"Male"<<endl;
-	ofs.close();         // file is closed
+    ofstream ofs("my_cpp.txt",ios::trunc);  
+	student s1("sumit",28,"male");
+	ofs<<s1;
+	ofs.close();
 	
-	ifstream ifs;   // object is created
+	ifstream ifs;
+	student s2;
 	ifs.open("my_cpp.txt");
-	if(ifs)                     // ifs will return 1 if file is open. we can also check ifs.is_open() for file opening.
-	{
-		cout<<"file is opened"<<endl;
-	}
-	
-	string name,gender;
-	int age;
-	
-	ifs>>name>>age>>gender;      // sequence should be maintained
-	ifs.close();
-	cout<<"name- "<<name<<endl;
-	cout<<"age- "<<age<<endl;
-	cout<<"gender- "<<gender<<endl;
+	ifs>>s1;
+	cout<<s1;
+
     return 0;
 }
