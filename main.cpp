@@ -1,54 +1,65 @@
-/*CPP for using STL map class. 
-1-STL contains a collection of classes that provide templated classes like:-
-  1.1-Algorithms- There are built in functions and algorithms for managing and performing operations on containers.
-  1.2-Containers- Array,linked list,stack,queues etc has built in classes is called containers.
-  1.3-Iterators - this is used to access the values of container class.
+/*CPP for using STL Pair class. 
+1-Pair provides a way to store two heterogeneous objects as a single unit.
+  syntax:- pair<T1,T2> pair1; where T1 and T2 can be data types,class etc.
+           pair1=make_pair(T1,T2) for inserting values in a pair.
+		   pair1.first and pair1.second for acessing members of pairs.
 
-2-Algorithms- search(),sort(),binary_search(),reverse(),concat(),copy(),union(),intersection(),merge(),heap().
-
-3) Containers- 
-    3.1) Vector- This is array only which can grow and reduce by itself only. it has some functions like
-	             push_back() which insert element at back,pop_back() for deleting element 
-				 from back,insert(),remove(),size(),empty(). in this method opeartions from front is not allowed.
-	3.2) list-   This class is for doubly linked list. it has same functions like in vectors but additionally
-              	 it has functions like push_front(),pop_front(),front(),back(),
-	3.3) forward_list- This class is for singley linked list. same function of list is used in this container. 
-	3.4) deque- It means double ended queue. it is same like vector. it is also having same set of functions like list.
-	            In this method opeartions from front is allowed unlike vectors.
-	3.5) priority_queue- It is used for maximum heap data structure. in this method always largest value of element
-                         will be deleted from queue.it has functions sets like push(),pop(),size(),empty().
-	3.6) stack- It works on LIFO principle. it has same set of functions like priority_queue.
-	3.7) set- it will always contain unique elements,duplicate elements are not allowed. it will not maintain the orders.
-	3.8) multiset- it is same as set but allows duplicate values.
-	3.9) map- it is used for storing key and value pair but keys should be unique.it uses hash table.
-	3.9) multi map- it is used for storing key and value pair but keys can be duplicate but key-value pair should be unique.
 */ 
 
 #include <stdio.h>
 #include <iostream>
-#include <map>
+
+
 using namespace std;
+
+class student
+{
+	private:
+	string name;
+	int marks;
+	
+	public:
+	student()
+	{
+		cout<<"student"<<endl;
+		
+	}
+	
+	student(string s, int m)
+	{
+		name=s;
+		marks=m;
+	}
+	
+	void show(void)
+	{
+		cout<<"name- "<<name<<"  "<<"marks: "<<marks<<endl;
+	}
+	
+};
 
 int main()
 {
-	map<int,string> m;
-	m.insert(pair<int,string>(1,"sumit"));
-	m.insert(pair<int,string>(2,"amit"));
-	m.insert(pair<int,string>(3,"rishi"));
-	m.insert(pair<int,string>(4,"papa"));
-	cout<<"using iterator and for loop:"<<endl;
+	/*****defining a pair****************/
 	
-	map<int,string>::iterator itr; // creating object of iterator class for vector class
-	for(itr=m.begin();itr!=m.end();itr++)
-	{
-		//cout<<++*itr<<endl; // we can not modify the values in the set. we can only display it. 
-		cout<<itr->first<<" "<<itr->second<<endl;
-	}
+	pair<string,string> p1;
+	pair<string,int> p2;
+	pair<int,student> p3;
+	student s1("Neha",56); 
 	
-	map<int,string>::iterator itr1;
-	itr1=m.find(3);
-	cout<<"value found:"<<endl;
-	cout<<itr1->first<<" "<<itr1->second<<endl;
+	/*****Inserting a Value*************/
 	
+	p1=make_pair("sumit","ojha");
+	p2=make_pair("sumit",28);
+	p3=make_pair(1,s1);
+	//student s2=p3.second;
+	
+	/**********Display***************/
+	cout<<"Pair-1:"<<endl<<p1.first<<"  "<<p1.second<<endl;
+	cout<<"Pair-2:"<<endl<<p2.first<<"  "<<p2.second<<endl;
+	cout<<"Pair-3:"<<endl<<p3.first<<"  ";
+    p3.second.show();
+	
+
    return 0;
 }
