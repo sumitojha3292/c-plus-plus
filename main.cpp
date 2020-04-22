@@ -1,13 +1,15 @@
-/*CPP for using STL Pair class. 
-1-Pair provides a way to store two heterogeneous objects as a single unit.
-  syntax:- pair<T1,T2> pair1; where T1 and T2 can be data types,class etc.
-           pair1=make_pair(T1,T2) for inserting values in a pair.
-		   pair1.first and pair1.second for acessing members of pairs.
+/*CPP for using STL tuple class. 
+1-Tuple provides a way to store multiple heterogeneous objects as a single unit.
+  syntax:- tuple<T1,T2,T3..,Tn> Tuple1; where T1 to Tn can be data types,class etc.
+           Tuple1=make_tuple(T1,T2,..Tn) for inserting values in a pair.
+		   For acessing members of tuple use get<0>(Tuple1) for acessing first member of tuple
+		   and get<n>(Tuple1) for nth member of Tuple1 .
 
 */ 
 
 #include <stdio.h>
 #include <iostream>
+#include<tuple>
 
 
 using namespace std;
@@ -21,7 +23,7 @@ class student
 	public:
 	student()
 	{
-		cout<<"student"<<endl;
+		cout<<"Student Info:"<<endl;
 		
 	}
 	
@@ -40,25 +42,18 @@ class student
 
 int main()
 {
-	/*****defining a pair****************/
-	
-	pair<string,string> p1;
-	pair<string,int> p2;
-	pair<int,student> p3;
-	student s1("Neha",56); 
-	
+	/*****defining a Tuple****************/
+	tuple<student,string,int,string,string> t1; 
+	student s1("Sumit",85);
 	/*****Inserting a Value*************/
+	t1=make_tuple(s1,"Age:",28,"Hobby:","cricket");
 	
-	p1=make_pair("sumit","ojha");
-	p2=make_pair("sumit",28);
-	p3=make_pair(1,s1);
-	//student s2=p3.second;
-	
-	/**********Display***************/
-	cout<<"Pair-1:"<<endl<<p1.first<<"  "<<p1.second<<endl;
-	cout<<"Pair-2:"<<endl<<p2.first<<"  "<<p2.second<<endl;
-	cout<<"Pair-3:"<<endl<<p3.first<<"  ";
-    p3.second.show();
+	/**********Display*****************/
+	s1.show();
+	cout<<get<1>(t1)<<endl;	
+	cout<<get<2>(t1)<<endl;
+	cout<<get<3>(t1)<<endl;
+	cout<<get<4>(t1)<<endl;
 	
 
    return 0;
